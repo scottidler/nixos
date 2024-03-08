@@ -7,7 +7,8 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      # ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
       <home-manager/nixos>
     ];
 
@@ -145,6 +146,8 @@
     git
     gnome.gnome-terminal
     graphviz
+    kitty
+    kitty-themes
     openvpn
     pciutils
     pavucontrol
@@ -172,7 +175,7 @@
   ];
 
   environment.variables = {
-    GDK_SCALE = "0.5";
+    # GDK_SCALE = "0.5";
   };
 
   systemd.services.dotfilesClone = {
@@ -194,6 +197,10 @@
       Environment = "PATH=/run/current-system/sw/bin:/bin:/usr/bin";
     };
   };
+
+  users.defaultUserShell = pkgs.zsh;
+  environment.shells = with pkgs; [ zsh ];
+  programs.zsh.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

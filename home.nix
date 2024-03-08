@@ -15,6 +15,34 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
+  # For a specific user
+  # users.users.saidler.shell = pkgs.zsh; 
+  # environment.shells = with pkgs; [ zsh ];
+  # users.users.officialrajdeepsingh.shell = pkgs.zsh;
+  
+  # enable zsh and oh my zsh
+  programs = {
+     zsh = {
+        enable = true;
+        enableCompletion = true;
+        enableAutosuggestions = true;
+        # zsh-autoenv.enable = true;
+        syntaxHighlighting.enable = true;
+        oh-my-zsh = {
+           enable = true;
+           theme = "robbyrussell";
+           plugins = [
+             "git"
+             "npm"
+             "history"
+             "node"
+             "rust"
+             "kubectl"
+           ];
+        };
+     };
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
