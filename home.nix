@@ -26,6 +26,7 @@
         enable = true;
         enableCompletion = true;
         enableAutosuggestions = true;
+	history.share = true;
         # zsh-autoenv.enable = true;
         syntaxHighlighting.enable = true;
         oh-my-zsh = {
