@@ -34,6 +34,7 @@ aliases:
   # corrections
   suod: sudo
   soud: sudo
+  vim: nvim #FIXME: replaced by shell command to handle multiple files
   svim: sudo vim
   vmi: vim
   emacs: vim
