@@ -19,29 +19,39 @@
   # users.users.saidler.shell = pkgs.zsh; 
   # environment.shells = with pkgs; [ zsh ];
   # users.users.officialrajdeepsingh.shell = pkgs.zsh;
-  
-  # enable zsh and oh my zsh
+
   programs = {
-     zsh = {
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      enableAutosuggestions = true;
+      history.share = true;
+      # zsh-autoenv.enable = true;
+      syntaxHighlighting.enable = true;
+      oh-my-zsh = {
         enable = true;
-        enableCompletion = true;
-        enableAutosuggestions = true;
-	history.share = true;
-        # zsh-autoenv.enable = true;
-        syntaxHighlighting.enable = true;
-        oh-my-zsh = {
-           enable = true;
-           theme = "robbyrussell";
-           plugins = [
-             "git"
-             "npm"
-             "history"
-             "node"
-             "rust"
-             "kubectl"
-           ];
+        theme = "robbyrussell";
+        plugins = [
+          "git"
+          "npm"
+          "history"
+          "node"
+          "rust"
+          "kubectl"
+        ];
+      };
+    };
+    starship = {
+      enable = true;
+      settings = {
+        format = "$directory$all$character";
+        directory = {
+          truncation_length = 0;
+          truncate_to_repo = false;
+          format = "[$path]($style)[$read_only]($read_only_style) ";
         };
-     };
+      };
+    };
   };
 
   # The home.packages option allows you to install Nix packages into your
