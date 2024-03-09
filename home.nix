@@ -1,6 +1,7 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, lib, ... }:
+let
+  link_sh = "${config.home.homeDirectory}/repos/scottidler/nixos/link.sh";
+in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "saidler";
@@ -54,16 +55,25 @@
     };
   };
 
+  # Ensure the script is executable
+  home.activation.linkDotfiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    ${pkgs.bash}/bin/bash ${link_sh}
+  '';
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     pkgs.hello
+    # Optional: Ensure git and bash are available in the user environment, if not already
+    pkgs.git
+    pkgs.bash
 
     pkgs.unzip
     pkgs.wget
     pkgs.gnupg
+    pkgs.keychain
     pkgs.vlc
     pkgs.btop
     pkgs.whois

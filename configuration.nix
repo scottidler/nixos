@@ -178,26 +178,6 @@
     # GDK_SCALE = "0.5";
   };
 
-  systemd.services.dotfilesClone = {
-    description = "Clone Dotfiles Repository";
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
-    script = ''
-      if [ ! -d /home/saidler/dotfiles ]; then
-        git clone https://github.com/scottidler/... /home/saidler/dotfiles
-      else
-        echo "Dotfiles directory already exists."
-      fi
-    '';
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      User = "saidler";
-      WorkingDirectory = "/home/saidler";
-      Environment = "PATH=/run/current-system/sw/bin:/bin:/usr/bin";
-    };
-  };
-
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [ zsh ];
   programs.zsh.enable = true;

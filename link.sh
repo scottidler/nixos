@@ -29,6 +29,6 @@ linker() {
 SCRIPT_PATH=$(dirname $(realpath -s $0))
 pushd $SCRIPT_PATH
 find "HOME" -type f | while read -r file; do
-	linker2 $file
+	linker $file
 done
 popd
