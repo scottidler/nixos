@@ -1,3 +1,5 @@
+# configuration.nix
+
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
@@ -165,6 +167,7 @@
     wget
     whois
     xclip
+    xorg.xauth
     xorg.xorgserver
     xorg.xrandr
     xorg.libxcvt
@@ -193,7 +196,14 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+  enable = true;
+    settings = {
+      X11Forwarding = true;
+      # XAuthLocation = "/run/current-system/sw/bin/xauth"; # This line is usually not necessary as NixOS should handle it automatically
+      # Any other SSH settings you wish to configure...
+    };
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
