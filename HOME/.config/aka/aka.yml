@@ -101,6 +101,17 @@ aliases:
   comb:
     value: 2>&1
     global: true
+
+  # nixos
+  H: nvim ~/repos/scottidler/nixos//home.nix
+  C: nvim ~/repos/scottidler/nixos/configuration.nix
+  R: sudo nixos-rebuild switch
+
+  # home-manager
+  hm: home-manager
+  hmn: home-manager news
+  hms: home-manager switch
+
   # apt install deb files
   apt-deb: sudo apt install -f ~/Downloads/
   apt-deb-force: sudo apt -o Dpkg::Options::="--force-overwrite" install -f ~/Downloads/
@@ -257,7 +268,6 @@ aliases:
   crh: cargo run -q -- --help
   cs: cargo search
   cdndo: cargo doc --no-deps --open
-  R: rustc
   RL: RUST_LOG=debug
   car: bat -p Cargo.toml
 
