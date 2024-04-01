@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   link_sh = "${config.home.homeDirectory}/repos/scottidler/nixos/link.sh";
+  dotfiles = "${config.home.homeDirectory}/repos/scottidler/nixos/HOME";
 in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -16,19 +17,85 @@ in {
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  # For a specific user
-  # users.users.saidler.shell = pkgs.zsh; 
-  # environment.shells = with pkgs; [ zsh ];
-  # users.users.officialrajdeepsingh.shell = pkgs.zsh;
+  # Ensure the script is executable
+  home.activation.linkDotfiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    ${pkgs.bash}/bin/bash ${link_sh}
+  '';
+
+  # The home.packages option allows you to install Nix packages into your
+  # environment.
+  home.packages = with pkgs; [
+    # # Adds the 'hello' command to your environment. It prints a friendly
+    # # "Hello, world!" when run.
+    hello
+    # Optional: Ensure git and bash are available in the user environment, if not already
+    git
+    bash
+
+    unzip
+    wget
+    gnupg
+    keychain
+    vlc
+    btop
+    whois
+    gimp
+    imagemagick
+    gcc
+    # (pkgs.rustChannels.stable.rust.override { extensions = ["rust-src"]; })
+    jq
+    yq
+    meld
+    neovim
+
+    eza
+    tokei
+    fd
+    du-dust
+    fend
+    #irust
+    procs
+    sccache
+    sd 
+    ripgrep
+    starship 
+    bat
+    zoxide
+    fzf
+
+    coreutils
+    libreoffice
+    #zoom-us
+    xclip
+
+    wofi
+    waybar
+
+    # # It is sometimes useful to fine-tune packages, for example, by applying
+    # # overrides. You can do that directly here, just don't forget the
+    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+    # # fonts?
+    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+
+    # # You can also create simple shell scripts directly inside your
+    # # configuration. For example, this adds a command 'my-hello' to your
+    # # environment:
+    (pkgs.writeShellScriptBin "my-hello" ''
+      echo "Hello, ${config.home.username}!"
+    '')
+
+    # other packages
+    (callPackage /home/saidler/repos/scottidler/aka/default.nix {})
+  ];
 
   programs = {
     zsh = {
       enable = true;
       enableCompletion = true;
-      enableAutosuggestions = true;
+      enableAutosuggestions = true; # autosuggestion.enable = true; was told to use this, but it didnt work
       history.share = true;
-      # zsh-autoenv.enable = true;
       syntaxHighlighting.enable = true;
+      initExtra = ''source ${pkgs.callPackage /home/saidler/repos/scottidler/aka/default.nix {} }/share/zsh/site-functions/_aka'';
       oh-my-zsh = {
         enable = true;
         theme = "robbyrussell";
@@ -46,82 +113,15 @@ in {
       enable = true;
       settings = {
         format = "$directory$all$character";
+	username.disabled = true;
         directory = {
           truncation_length = 0;
           truncate_to_repo = false;
-          format = "[$path]($style)[$read_only]($read_only_style) ";
+          format = "[$path]($style)[$read_only]($read_only_style)";
         };
       };
     };
   };
-
-  # Ensure the script is executable
-  home.activation.linkDotfiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ${pkgs.bash}/bin/bash ${link_sh}
-  '';
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    pkgs.hello
-    # Optional: Ensure git and bash are available in the user environment, if not already
-    pkgs.git
-    pkgs.bash
-
-    pkgs.unzip
-    pkgs.wget
-    pkgs.gnupg
-    pkgs.keychain
-    pkgs.vlc
-    pkgs.btop
-    pkgs.whois
-    pkgs.gimp
-    pkgs.imagemagick
-    pkgs.gcc
-    # (pkgs.rustChannels.stable.rust.override { extensions = ["rust-src"]; })
-    pkgs.jq
-    pkgs.yq
-    pkgs.meld
-    pkgs.neovim
-
-    pkgs.eza
-    pkgs.tokei
-    pkgs.fd
-    pkgs.du-dust
-    pkgs.fend
-    #pkgs.irust
-    pkgs.procs
-    pkgs.sccache
-    pkgs.sd 
-    pkgs.ripgrep
-    pkgs.starship 
-    pkgs.bat
-    pkgs.zoxide
-    pkgs.fzf
-
-    pkgs.coreutils
-    pkgs.libreoffice
-    # pkgs.zoom-us
-    pkgs.xclip
-
-    pkgs.wofi
-    pkgs.waybar
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    (pkgs.writeShellScriptBin "my-hello" ''
-      echo "Hello, ${config.home.username}!"
-    '')
-  ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -168,7 +168,9 @@ in {
   #  /etc/profiles/per-user/saidler/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
+    # FIXME: this is a stop gap until I can solve for binaries and scripts int a more idiomatic way
+    PATH = "${config.home.homeDirectory}/bin:$PATH";
   };
 
   # Let Home Manager install and manage itself.
