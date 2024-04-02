@@ -86,6 +86,7 @@ in {
 
     # other packages
     (callPackage /home/saidler/repos/scottidler/aka/default.nix {})
+    (callPackage /home/saidler/repos/scottidler/rmrf/default.nix {})
   ];
 
   programs = {
@@ -112,7 +113,7 @@ in {
     starship = {
       enable = true;
       settings = {
-        format = "$directory$all$character";
+        format = "$directory $all$character";
 	username.disabled = true;
         directory = {
           truncation_length = 0;
@@ -136,6 +137,21 @@ in {
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+
+    ".config/rmrf/rmrf2.cfg".text = ''
+      # where to store tarballs of removed files
+      rmrf_path=/var/tmp/rmrf2
+      bkup_path=/var/tmp/bkup2
+
+      # use sudo by default
+      sudo=yes
+
+      # how many days to keep files in tarball at /var/tmp/rmrf
+      keep=21
+
+      # value used in fuzzy searching
+      threshold=70
+    '';
   };
 
   services.gpg-agent = {
