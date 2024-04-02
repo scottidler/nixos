@@ -5,7 +5,6 @@ aliases:
   calc: fend
   cat: bat -p
   catn: bat -n --decorations=always
-  car: bat -p Cargo.toml
   cinema: asciinema
   cl: clear
   ds: dig +short
@@ -34,7 +33,7 @@ aliases:
   # corrections
   suod: sudo
   soud: sudo
-  vim: nvim #FIXME: replaced by shell command to handle multiple files
+  vim: nvim
   svim: sudo vim
   vmi: vim
   emacs: vim
@@ -101,17 +100,6 @@ aliases:
   comb:
     value: 2>&1
     global: true
-
-  # nixos
-  H: nvim ~/repos/scottidler/nixos//home.nix
-  C: nvim ~/repos/scottidler/nixos/configuration.nix
-  R: sudo nixos-rebuild switch
-
-  # home-manager
-  hm: home-manager
-  hmn: home-manager news
-  hms: home-manager switch
-
   # apt install deb files
   apt-deb: sudo apt install -f ~/Downloads/
   apt-deb-force: sudo apt -o Dpkg::Options::="--force-overwrite" install -f ~/Downloads/
@@ -144,11 +132,12 @@ aliases:
   ekv-diff: (cd /etc && sudo etckeeper vcs diff)
 
   ## rmrf-rs
-  bkup: rmrf-rs bkup
-  rmrf: rmrf-rs
-  ls-bkup: rmrf-rs ls-bkup
-  ls-rmrf: rmrf-rs ls-rmrf
-  bkup-rmrf: rmrf-rs bkup-rmrf
+  bkup: rmrf bkup
+  rmrf: rmrf
+  rcvr: rmrf rcvr
+  ls-bkup: rmrf ls-bkup
+  ls-rmrf: rmrf ls-rmrf
+  bkup-rmrf: rmrf bkup-rmrf
 
   # list git repos
   lgr: ls-git-repos
@@ -182,7 +171,7 @@ aliases:
   extract: ffmpeg -i $1 -vsync 2 '$1_%04d.png'
 
   # tree
-  T: eza -a --tree --long --ignore-glob='.git|__*|tf|venv|target|incremental'
+  T: eza --tree -a --long --ignore-glob='.git|__*|tf|venv|target|incremental'
   TOLD: tree -a -I '.*|__*|tf|venv|target|incremental'
   TT: tree -a -I '__*|tf|venv|target|incremental'
   TA: tree -a
@@ -218,11 +207,11 @@ aliases:
 
   # rust cli tools
   # ls
-  lah: exa -lah --git
-  ltr: exa -lr -sold
-  ll: exa -alF
-  la: exa -la
-  ls: exa
+  lah: eza -lah --git
+  ltr: eza -lr -sold
+  ll: eza -alF
+  la: eza -la
+  ls: eza
 
   repl: irust
   repl2: evcxr
@@ -264,12 +253,16 @@ aliases:
   cep: cargo expand | awk '/$@/,0'
   ct: cargo test
   cr: cargo run -q --
+  crd: RUST_LOG=debug cargo run -q --
   cre: cargo run -q --example $1 --
   crh: cargo run -q -- --help
   cs: cargo search
   cdndo: cargo doc --no-deps --open
+  R: rustc
   RL: RUST_LOG=debug
   car: bat -p Cargo.toml
+  csm: bat -p src/main.rs
+  vsm: vim src/main.rs
 
   new-rust: cargo init $1; cd $1; vim src/main.rs Cargo.toml
 
@@ -296,6 +289,8 @@ aliases:
   # pytest
   pyt: pytest .
 
+  m: meltano
+
   # git
   g: git
   ga: git add
@@ -311,6 +306,7 @@ aliases:
   gp: git pull
   gP: git push
   gpo: 'git push -u origin $(git symbolic-ref --short -q HEAD)'
+  gpot: 'git push -u origin $(git symbolic-ref --short -q HEAD) --tags'
   gpof: 'git push -u origin $(git symbolic-ref --short -q HEAD) --force-with-lease'
   gs: git status --short
   gbc: git branch --contains
@@ -360,6 +356,10 @@ aliases:
   gsmu: gsm update
   gsmur: gsm update --remote
   gsmui: 'gsm update --jobs=$((3 * $(nproc))) --init --recursive'
+
+  # gh cli
+  gcs: gh copilot suggest
+  gce: gh copilot explain
 
   gqs: git-quick-stats
   gh-title: gh pr create --title "$(git symbolic-ref --short HEAD | awk -v FS='/' -v OFS='/' '{ gsub(/-/," ",$2) } { print }' | tr '/' ' ')" --reviewer tatari-tv/SRE; gh pr view --web
@@ -477,12 +477,12 @@ aliases:
   sc: systemctl
 
   # edit, re-evals
-  akas: nvim ~/.config/aka/aka.yml; . ~/.zshrc
-  bashrc: nvim ~/.bashrc; . ~/.bashrc
-  zshrc: nvim ~/.zshrc; . ~/.zshrc
-  aliases: nvim ~/.shell-aliases; . ~/.zshrc
-  exports: nvim ~/.shell-exports; . ~/.zshrc
-  functions: nvim ~/.shell-functions; . ~/.zshrc
+  akas: vim ~/.config/aka/aka.yml; . ~/.zshrc
+  bashrc: vim ~/.bashrc; . ~/.bashrc
+  zshrc: vim ~/.zshrc; . ~/.zshrc
+  aliases: vim ~/.shell-aliases; . ~/.zshrc
+  exports: vim ~/.shell-exports; . ~/.zshrc
+  functions: vim ~/.shell-functions; . ~/.zshrc
 
   # update reboot|shutdown
   ureboot: 'update && reboot'
