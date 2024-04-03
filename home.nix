@@ -1,6 +1,5 @@
 { config, pkgs, lib, ... }:
 let
-  link_sh = "${config.home.homeDirectory}/repos/scottidler/nixos/link.sh";
   dotfiles = "${config.home.homeDirectory}/repos/scottidler/nixos/HOME";
 in {
   # Home Manager needs a bit of information about you and the paths it should
@@ -16,11 +15,6 @@ in {
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
-
-  # Ensure the script is executable
-  home.activation.linkDotfiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ${pkgs.bash}/bin/bash ${link_sh}
-  '';
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -127,6 +121,35 @@ in {
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
+    ".bash_prompt".source = ./HOME/.bash_prompt;
+    ".bashrc".source = ./HOME/.bashrc;
+    ".config/aka/aka.yml".source = ./HOME/.config/aka/aka.yml;
+    ".config/clone/clone.cfg".source = ./HOME/.config/clone/clone.cfg;
+    ".config/nightly/nightly.desktop".source = ./HOME/.config/nightly/nightly.desktop;
+    ".config/pianobar/config".source = ./HOME/.config/pianobar/config;
+    ".config/pip/pip.conf".source = ./HOME/.config/pip/pip.conf;
+    ".config/rmrf/rmrf.cfg".source = ./HOME/.config/rmrf/rmrf.cfg;
+    ".config/tmp/tmp.yml".source = ./HOME/.config/tmp/tmp.yml;
+    ".expand-aka".source = ./HOME/.expand-aka;
+    ".gitconfig".source = ./HOME/.gitconfig;
+    ".gitconfig-ssh".source = ./HOME/.gitconfig-ssh;
+    ".gitconfig-work".source = ./HOME/.gitconfig-work;
+    ".gnupg/gpg.conf".source = ./HOME/.gnupg/gpg.conf;
+    ".local/share/applications/.obsidian.png".source = ./HOME/.local/share/applications/.obsidian.png;
+    ".local/share/applications/Obsidian.desktop".source = ./HOME/.local/share/applications/Obsidian.desktop;
+    ".rustfmt.toml".source = ./HOME/.rustfmt.toml;
+    ".shell-aliases".source = ./HOME/.shell-aliases;
+    ".shell-exports".source = ./HOME/.shell-exports;
+    ".shell-exports.d/rust.env".source = ./HOME/.shell-exports.d/rust.env;
+    ".shell-functions".source = ./HOME/.shell-functions;
+    ".ssh/config".source = ./HOME/.ssh/config;
+    ".ssh-ident".source = ./HOME/.ssh-ident;
+    ".tmux.conf".source = ./HOME/.tmux.conf;
+    ".vim/syntax/ragel.vim".source = ./HOME/.vim/syntax/ragel.vim;
+    ".vimrc".source = ./HOME/.vimrc;
+    ".zsh/functions/_exercism".source = ./HOME/.zsh/functions/_exercism;
+    ".zsh-dircolors.config".source = ./HOME/.zsh-dircolors.config;
+
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
