@@ -149,11 +149,12 @@ aliases:
   ping-google-v6: ping 2607:f8b0:400a:80b::200e
 
   # cd to common directories
-  docs: cd ~/Documents
-  down: cd ~/Downloads
-  cd-tmp: cd ~/tmp
+  docs: cd ~/Documents/
+  down: cd ~/Downloads/
+  cd-hm: cd ~/.config/home-manager/
+  cd-tmp: cd ~/tmp/
   cd-repos: cd ~/repos/
-  cd-aka: cd ~/repos/scottidler/aka
+  cd-aka: cd ~/repos/scottidler/aka/
   cd-otto: cd ~/repos/scottidler/otto/
   cd-philo: cd ~/repos/tatari-tv/philo/
   cd-rkvr: cd ~/repos/scottidler/rkvr/
@@ -161,8 +162,8 @@ aliases:
   cd-github-setup: cd ~/repos/tatari-tv/github-setup/
   cd-leatherman: cd ~/repos/scottidler/leatherman/
   cd-sieve: cd ~/repos/scottidler/sieve/
-  cd-rfc: cd ~/repos/tatari-tv/rfc
-  cd-dashify: cd ~/repos/scottidler/dashify
+  cd-rfc: cd ~/repos/tatari-tv/rfc/
+  cd-dashify: cd ~/repos/scottidler/dashify/
   cp-cd: mkdir -p $2 && cp $1 $2 && cd $(toplevel $2)
   mv-cd: mkdir -p $2 && mv $1 $2 && cd $(toplevel $2)
   mkdir-cd: mkdir -p $1 && cd $1
