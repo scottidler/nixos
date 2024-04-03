@@ -50,9 +50,9 @@ in {
     #irust
     procs
     sccache
-    sd 
+    sd
     ripgrep
-    starship 
+    starship
     bat
     zoxide
     fzf
@@ -125,8 +125,6 @@ in {
     ".bashrc".source = ./HOME/.bashrc;
     ".config/aka/aka.yml".source = ./HOME/.config/aka/aka.yml;
     ".config/clone/clone.cfg".source = ./HOME/.config/clone/clone.cfg;
-    ".config/nightly/nightly.desktop".source = ./HOME/.config/nightly/nightly.desktop;
-    ".config/pianobar/config".source = ./HOME/.config/pianobar/config;
     ".config/pip/pip.conf".source = ./HOME/.config/pip/pip.conf;
     ".config/rmrf/rmrf.cfg".source = ./HOME/.config/rmrf/rmrf.cfg;
     ".config/tmp/tmp.yml".source = ./HOME/.config/tmp/tmp.yml;
@@ -145,7 +143,6 @@ in {
     ".ssh/config".source = ./HOME/.ssh/config;
     ".ssh-ident".source = ./HOME/.ssh-ident;
     ".tmux.conf".source = ./HOME/.tmux.conf;
-    ".vim/syntax/ragel.vim".source = ./HOME/.vim/syntax/ragel.vim;
     ".vimrc".source = ./HOME/.vimrc;
     ".zsh/functions/_exercism".source = ./HOME/.zsh/functions/_exercism;
     ".zsh-dircolors.config".source = ./HOME/.zsh-dircolors.config;
