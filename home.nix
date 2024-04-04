@@ -1,6 +1,7 @@
+# home.nix
 { config, pkgs, lib, ... }:
 let
-  dotfiles = "${config.home.homeDirectory}/repos/scottidler/nixos/HOME";
+  repos = import ./repos.nix { inherit config lib pkgs; };
 in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -174,6 +175,11 @@ in {
     '';
   };
 
+  # Apply the activation scripts from repos
+  home.activation = repos.activation // {
+    # any activation scripts
+  };
+
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
@@ -206,7 +212,9 @@ in {
   home.sessionVariables = {
     EDITOR = "nvim";
     # FIXME: this is a stop gap until I can solve for binaries and scripts int a more idiomatic way
-    PATH = "${config.home.homeDirectory}/bin:$PATH";
+    # PATH = "${config.home.homeDirectory}/bin:$PATH";
+    # PATH = "${config.environment.systemPackages}/bin:${pkgs.git}/bin:/run/current-system/sw/bin:$PATH"; 
+    PATH = lib.makeBinPath [ pkgs.git ] + ":/run/current-system/sw/bin:$PATH";
   };
 
   # Let Home Manager install and manage itself.
