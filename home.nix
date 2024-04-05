@@ -1,7 +1,7 @@
 # home.nix
 { config, pkgs, lib, ... }:
 let
-  repos = import ./repos.nix { inherit config lib pkgs; };
+  # repos = import ./repos2.nix { inherit config lib pkgs; };
 in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -20,6 +20,9 @@ in {
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    # FIXME: would be nice to have the fetch commands installed
+    # nix-prefetch-scripts
+    # gitAndTools.nix-prefetch-git
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     hello
@@ -85,6 +88,31 @@ in {
   ];
 
   programs = {
+    bash = {
+      enable = true;
+      enableCompletion = true;
+      historySize = 10000;
+      historyFile = "~/.bash_eternal_history";
+      historyControl = [ "ignoredups" "ignorespace" "erasedups" ];
+      historyIgnore = [ "ls" "cd .." ];
+      shellAliases = {
+        ll = "ls -alF";
+        la = "ls -A";
+        l = "ls -CF";
+      };
+      initExtra = ''
+        # Initialize programmable completion features
+        if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+          . /etc/bash_completion
+        fi
+      '';
+      bashrcExtra = ''
+        # Define your PS1 here
+        PS1='\\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\$ '
+        
+        # Any other bashrc configurations can go here
+      '';
+    };
     zsh = {
       enable = true;
       enableCompletion = true;
@@ -92,6 +120,18 @@ in {
       history.share = true;
       syntaxHighlighting.enable = true;
       initExtra = ''source ${pkgs.callPackage /home/saidler/repos/scottidler/aka/default.nix {} }/share/zsh/site-functions/_aka'';
+      plugins = [
+        {
+          name = "zsh-nix-shell";
+          file = "nix-shell.plugin.zsh";
+          src = pkgs.fetchFromGitHub {
+            owner = "chisui";
+            repo = "zsh-nix-shell";
+            rev = "v0.8.0";
+            sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
+          };
+        }
+      ];
       oh-my-zsh = {
         enable = true;
         theme = "robbyrussell";
@@ -122,8 +162,8 @@ in {
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    ".bash_prompt".source = ./HOME/.bash_prompt;
-    ".bashrc".source = ./HOME/.bashrc;
+    # ".bash_prompt".source = ./HOME/.bash_prompt;
+    # ".bashrc".source = ./HOME/.bashrc;
     ".config/aka/aka.yml".source = ./HOME/.config/aka/aka.yml;
     ".config/clone/clone.cfg".source = ./HOME/.config/clone/clone.cfg;
     ".config/pip/pip.conf".source = ./HOME/.config/pip/pip.conf;
@@ -176,9 +216,9 @@ in {
   };
 
   # Apply the activation scripts from repos
-  home.activation = repos.activation // {
+  # home.activation = repos.activation // {
     # any activation scripts
-  };
+  # };
 
   services.gpg-agent = {
     enable = true;
@@ -214,7 +254,8 @@ in {
     # FIXME: this is a stop gap until I can solve for binaries and scripts int a more idiomatic way
     # PATH = "${config.home.homeDirectory}/bin:$PATH";
     # PATH = "${config.environment.systemPackages}/bin:${pkgs.git}/bin:/run/current-system/sw/bin:$PATH"; 
-    PATH = lib.makeBinPath [ pkgs.git ] + ":/run/current-system/sw/bin:$PATH";
+    # PATH = lib.makeBinPath [ pkgs.git ] + ":/run/current-system/sw/bin:$PATH"; THIS FUCKED ME
+    # PATH = "&PATH:${pkgs.nix-prefetch-scripts}/bin:${pkgs.gitAndTools.nix-prefetch-git}/bin";
   };
 
   # Let Home Manager install and manage itself.

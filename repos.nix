@@ -1,39 +1,52 @@
 # repos2.nix
-{ config, lib, pkgs }:
+{ config, lib, pkgs, ... }:
 
 let
-  gitPath = "${pkgs.git}/bin/git"; # Explicitly define the path to git.
+  homeDir = config.home.homeDirectory;
+  reposDir = "${homeDir}/.../repos";
 
-  cloneRepo = slug: {
-    name = "clone-${slug}";
-    value = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      repoPath="${config.home.homeDirectory}/.../repos/${slug}"
-      if [ ! -d "$repoPath" ]; then
-        echo "Cloning ${slug} into $repoPath"
-        mkdir -p "$repoPath"
-        ${gitPath} clone https://github.com/${slug}.git "$repoPath" # Use the full path to git
-      else
-        echo "$repoPath already exists; skipping."
-      fi
-    '';
+  reposAndLinks = {
+    "scottidler/git" = {
+      links = {
+        "bin/clone" = "~/bin/clone";
+        "bin/clone-lite" = "~/bin/clone-lite";
+      };
+    };
+    "scottidler/tmp" = {
+      links = {
+        "bin/tmp" = "~/bin/tmp";
+      };
+    };
+    # Add more repositories and their links here
   };
 
-  slugs = [
-    "scottidler/git"
-    "scottidler/tmp"
-    "scottidler/helpful"
-    "scottidler/dock"
-    "scottidler/pimp"
-    "scottidler/ls-stat"
-    "scottidler/xpndr"
-    "scottidler/y2j"
-    "scottidler/repo"
-    "scottidler/cert-tools"
-  ];
+  createRepoSymlinks = slug: repoAttrs:
+    let
+      repoPath = "${reposDir}/${slug}";
+    in
+    lib.mapAttrs' (target: linkPath: {
+      name = linkPath;
+      value = {
+        source = "${repoPath}/${target}";
+        target = builtins.replaceStrings ["~/"] [homeDir + "/"] linkPath;
+      };
+    }) repoAttrs.links;
 
-  activationScripts = builtins.listToAttrs (map cloneRepo slugs);
-in {
-  file = {}; # Placeholder for file attribute, maintaining structure.
-  activation = activationScripts;
+  symlinkAttrs = lib.flattenAttrs (lib.mapAttrsToList createRepoSymlinks reposAndLinks);
+
+in
+{
+  home.file = symlinkAttrs;
+
+  home.activation.cloneRepos = lib.hm.dag.entryAfter [ "writeBoundary" ] (lib.concatStringsSep "\n" (lib.mapAttrsToList (slug: repoAttrs: ''
+      repoPath="${reposDir}/${slug}"
+      if [ ! -d "$repoPath" ]; then
+        echo "Cloning ${slug} into $repoPath"
+        git clone https://github.com/${slug}.git "$repoPath"
+      else
+        echo "Repository ${slug} already exists at $repoPath; attempting to pull changes."
+        (cd "$repoPath" && git pull)
+      fi
+    '') reposAndLinks));
 }
 
