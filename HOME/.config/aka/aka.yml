@@ -1,5 +1,9 @@
 aliases:
 
+  # nixos
+  ns: nix-shell -p
+  nrs: sudo nix-rebuild switch
+
   # one-offs
   dmesg: sudo dmesg
   calc: fend
@@ -429,10 +433,10 @@ aliases:
   kDn: kubectl delete namespace
   kv: kubectl version
   kl: kubectl logs
-  ns:
+  NS:
     value: --namespace
     global: true
-  oy:
+  OY:
     value: -o -yaml
     global: true
 
