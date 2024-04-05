@@ -166,6 +166,7 @@ in {
     # ".bashrc".source = ./HOME/.bashrc;
     ".config/aka/aka.yml".source = ./HOME/.config/aka/aka.yml;
     ".config/clone/clone.cfg".source = ./HOME/.config/clone/clone.cfg;
+    ".config/nvim/init.lua".source = ./HOME/.config/nvim/init.lua;
     ".config/pip/pip.conf".source = ./HOME/.config/pip/pip.conf;
     ".config/rmrf/rmrf.cfg".source = ./HOME/.config/rmrf/rmrf.cfg;
     ".config/tmp/tmp.yml".source = ./HOME/.config/tmp/tmp.yml;
