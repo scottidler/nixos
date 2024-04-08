@@ -2,6 +2,12 @@
 { config, pkgs, lib, ... }:
 let
   # repos = import ./repos2.nix { inherit config lib pkgs; };
+  nvim = pkgs.fetchFromGitHub {
+    owner = "scottidler";
+    repo = "nvim";
+    rev = "main";
+    sha256 = "sha256-Fg/g+CdnO7aIPCJcOBxEYUinwh2RjeWgf8xmyw3qvgo=";
+  };
 in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -23,8 +29,9 @@ in {
     # FIXME: would be nice to have the fetch commands installed
     # nix-prefetch-scripts
     # gitAndTools.nix-prefetch-git
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
+    nodejs
+    tree-sitter
+    lua-language-server
     hello
     # Optional: Ensure git and bash are available in the user environment, if not already
     git
@@ -162,11 +169,9 @@ in {
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    # ".bash_prompt".source = ./HOME/.bash_prompt;
-    # ".bashrc".source = ./HOME/.bashrc;
+    ".config/nvim".source = nvim;
     ".config/aka/aka.yml".source = ./HOME/.config/aka/aka.yml;
     ".config/clone/clone.cfg".source = ./HOME/.config/clone/clone.cfg;
-    ".config/nvim/init.lua".source = ./HOME/.config/nvim/init.lua;
     ".config/pip/pip.conf".source = ./HOME/.config/pip/pip.conf;
     ".config/rmrf/rmrf.cfg".source = ./HOME/.config/rmrf/rmrf.cfg;
     ".config/tmp/tmp.yml".source = ./HOME/.config/tmp/tmp.yml;

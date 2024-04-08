@@ -138,6 +138,7 @@
   # List packages installed in system profile
   environment.systemPackages = with pkgs; [
     anki
+    cmake
     curl
     discord
     docker
@@ -147,6 +148,8 @@
     gimp-with-plugins
     git
     gnome.gnome-terminal
+    gnumake
+    google-chrome
     graphviz
     kitty
     kitty-themes
@@ -171,6 +174,8 @@
     xorg.xorgserver
     xorg.xrandr
     xorg.libxcvt
+
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
 
   services.xserver.excludePackages = with pkgs; [
