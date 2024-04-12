@@ -124,8 +124,8 @@ let
     {
       owner = "scottidler";
       repo = "cert-tools";
-      rev = "0abd4bfb88aa91a689eeb6d2f466c6b9db27da4e";
-      sha256 = "sha256-tfTNMNuFClDpJ2PUFNKtoOV9qoaXCXmmjrRk1uNlkE8=";
+      rev = "35cbad5b63f1c27d65b4febf6d1e9e40914f1bac";
+      sha256 = "sha256-nnckSkJQj6ObBD9xEgvQD9ms1BpUTXxJ+b1K/lBkWzU=";
       links = {
         "findcert" = "${HOME}/bin/findcert";
         "modcert" = "${HOME}/bin/modcert";
