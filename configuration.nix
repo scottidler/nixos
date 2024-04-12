@@ -4,9 +4,33 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
+  # Allow unfree packages
+  # Explicitly set which non-free packages can be installed
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+    "vscode-extension-ms-vscode-cpptools"
+    "nvidia"
+    "nvidia-x11"
+    "discord"
+    "zoom"
+    "slack"
+    "obsidian"
+    "spotify"
+    "google-chrome"
+  ];
+
+  # FIXME: need to figure out how to remove this and use only what's above ^^^
+  nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   imports =
     [ # Include the results of the hardware scan.
       # ./hardware-configuration.nix
@@ -132,8 +156,6 @@
     setSocketVariable = true;
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile
   environment.systemPackages = with pkgs; [
@@ -175,7 +197,12 @@
     xorg.xrandr
     xorg.libxcvt
 
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+  ];
+
+  fonts.packages = with pkgs; [
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "SourceCodePro" ]; })
+    font-awesome
+    siji
   ];
 
   services.xserver.excludePackages = with pkgs; [
