@@ -154,52 +154,6 @@ let
     #  };
     #}
     #{
-    #  owner = "sahsanu";
-    #  repo = "lectl";
-    #  rev = "specify-revision";
-    #  sha256 = "specify-sha256";
-    #  links = {
-    #    "lectl" = "${HOME}/bin/lectl";
-    #  };
-    #}
-    #{
-    #  owner = "esc";
-    #  repo = "git-big-picture";
-    #  rev = "specify-revision";
-    #  sha256 = "specify-sha256";
-    #  links = {
-    #    "git-big-picture" = "${HOME}/bin/gbp";
-    #  };
-    #}
-    #{
-    #  owner = "powerline";
-    #  repo = "powerline";
-    #  rev = "specify-revision";
-    #  sha256 = "specify-sha256";
-    #  links = {
-    #    "font/10-powerline-symbols.conf" = "${HOME}/.config/fontconfig/conf.d/10-powerline-symbols.conf";
-    #    "font/PowerlineSymbols.otf" = "${HOME}/.fonts/PowerlineSymbols.otf";
-    #  };
-    #}
-    #{
-    #  owner = "joel-porquet";
-    #  repo = "zsh-dircolors-solarized";
-    #  rev = "specify-revision";
-    #  sha256 = "specify-sha256";
-    #  links = {
-    #    "zsh-dircolors-solarized.zsh" = "${HOME}/.zsh/zsh-dircolors-solarized/zsh-dircolors-solarized.zsh";
-    #  };
-    #}
-    #{
-    #  owner = "robbyrussell";
-    #  repo = "oh-my-zsh";
-    #  rev = "specify-revision";
-    #  sha256 = "specify-sha256";
-    #  links = {
-    #    "." = "${HOME}/.oh-my-zsh";
-    #  };
-    #}
-    #{
     #  owner = "tfutils";
     #  repo = "tfenv";
     #  rev = "specify-revision";
