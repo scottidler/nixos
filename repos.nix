@@ -9,15 +9,15 @@ let
 
   HOME = config.home.homeDirectory;
   repos = [
-    {
-      owner = "scottidler";
-      repo = "nvim";
-      rev = "b9f67dbff267faf8cf0757bcff9cc9305865c431";
-      sha256 = "sha256-Fg/g+CdnO7aIPCJcOBxEYUinwh2RjeWgf8xmyw3qvgo=";
-      links = {
-        "./" = "${HOME}/.config/nvim";
-      };
-    }
+    #{
+    #  owner = "scottidler";
+    #  repo = "nvim";
+    #  rev = "9023255952d562bd3214e1fbbbf7c8233d85e4ee";
+    #  sha256 = "sha256-ZZyz04vsxonr2Sob8Gp6qfdDMUfu2mPhYKdoeod1TPM=";
+    #  links = {
+    #    "./" = "${HOME}/.config/nvim";
+    #  };
+    #}
     {
       owner = "scottidler";
       repo = "git";
@@ -49,8 +49,8 @@ let
     {
       owner = "scottidler";
       repo = "helpful";
-      rev = "939675b960bd2d923bb7f192af3c42d612a08dd9";
-      sha256 = "sha256-gzcbdazGTyzudW/3TsIFtFTPnShENR3qjoz9tJbM/FM=";
+      rev = "fdb84318c3ca560a7e858459649dfb9a5c08d49e";
+      sha256 = "sha256-gTn4Im8ydpQ06RvLD3KF1cX3qFQEYBqhmV/aUyPqb+0=";
       links = {
         "bin/cidr" = "${HOME}/bin/cidr";
         "bin/say" = "${HOME}/bin/say";
