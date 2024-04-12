@@ -20,6 +20,40 @@ let
     #}
     {
       owner = "scottidler";
+      repo = "helpful";
+      rev = "fdb84318c3ca560a7e858459649dfb9a5c08d49e";
+      sha256 = "sha256-gTn4Im8ydpQ06RvLD3KF1cX3qFQEYBqhmV/aUyPqb+0=";
+      links = {
+        "bin/cidr" = "${HOME}/bin/cidr";
+        "bin/say" = "${HOME}/bin/say";
+        "bin/speedtest" = "${HOME}/bin/speedtest";
+        "bin/tab" = "${HOME}/bin/tab";
+        "bin/tab1" = "${HOME}/bin/tab1";
+        "bin/tab2" = "${HOME}/bin/tab2";
+        "bin/tab3" = "${HOME}/bin/tab3";
+        "bin/tab4" = "${HOME}/bin/tab4";
+        "bin/toggle" = "${HOME}/bin/toggle";
+        "bin/prepend" = "${HOME}/bin/prepend";
+        "bin/toggle-remote-url" = "${HOME}/bin/toggle-remote-url";
+        "shell-functions.sh" = "${HOME}/.shell-functions.d/helpful.sh";
+      };
+    }
+    {
+      owner = "scottidler";
+      repo = "cert-tools";
+      rev = "35cbad5b63f1c27d65b4febf6d1e9e40914f1bac";
+      sha256 = "sha256-nnckSkJQj6ObBD9xEgvQD9ms1BpUTXxJ+b1K/lBkWzU=";
+      links = {
+        "findcert" = "${HOME}/bin/findcert";
+        "modcert" = "${HOME}/bin/modcert";
+        "ssl-compare" = "${HOME}/bin/ssl-compare";
+        "ssl-inspect" = "${HOME}/bin/ssl-inspect";
+        "ssl-sans" = "${HOME}/bin/ssl-sans";
+        "ssl-validity" = "${HOME}/bin/ssl-validity";
+      };
+    }
+    {
+      owner = "scottidler";
       repo = "git";
       rev = "a3f5bd07197037e5af2315770136ccd32f6424d4";
       sha256 = "sha256-mxVJf918VE9hpkhhvfy8MDJICCevRdJWplmjfYI1PV8=";
@@ -48,22 +82,11 @@ let
     }
     {
       owner = "scottidler";
-      repo = "helpful";
-      rev = "fdb84318c3ca560a7e858459649dfb9a5c08d49e";
-      sha256 = "sha256-gTn4Im8ydpQ06RvLD3KF1cX3qFQEYBqhmV/aUyPqb+0=";
+      repo = "repo";
+      rev = "69bcd3a5d43da3bcba33e6ef4cde629bbee115cd";
+      sha256 = "sha256-hTArEDz3ziaSwWeMarZWNhe2lVSwWzJNbqwW+XEld0k=";
       links = {
-        "bin/cidr" = "${HOME}/bin/cidr";
-        "bin/say" = "${HOME}/bin/say";
-        "bin/speedtest" = "${HOME}/bin/speedtest";
-        "bin/tab" = "${HOME}/bin/tab";
-        "bin/tab1" = "${HOME}/bin/tab1";
-        "bin/tab2" = "${HOME}/bin/tab2";
-        "bin/tab3" = "${HOME}/bin/tab3";
-        "bin/tab4" = "${HOME}/bin/tab4";
-        "bin/toggle" = "${HOME}/bin/toggle";
-        "bin/prepend" = "${HOME}/bin/prepend";
-        "bin/toggle-remote-url" = "${HOME}/bin/toggle-remote-url";
-        "shell-functions.sh" = "${HOME}/.shell-functions.d/helpful.sh";
+        "bin/repo" = "${HOME}/bin/repo";
       };
     }
     {
@@ -73,6 +96,33 @@ let
       sha256 = "sha256-Bt8mlKMlWFTc8qOOpwOO12QvHQk3rl9Huj+XZMb8mZ0=";
       links = {
         "dock" = "${HOME}/bin/dock";
+      };
+    }
+    {
+      owner = "scottidler";
+      repo = "xpndr";
+      rev = "04ca06b448ee71ea5450324d2b5d5fdb99826e49";
+      sha256 = "sha256-MliR/r9AEq+0/uJcVvQbB1TQZ+/xxQnmm0b2LI7nmV8=";
+      links = {
+        "xpndr" = "${HOME}/bin/xpndr";
+      };
+    }
+    {
+      owner = "awslabs";
+      repo = "awscli-aliases";
+      rev = "5357e18bc27b42a827b6780564ea873a72ca1f01";
+      sha256 = "sha256-E2tRNEQaboeCm+Od0BPSwm2hEiFzFtK+pFLEg7t0FUg=";
+      links = {
+        "alias" = "${HOME}/.awscli-aliases";
+      };
+    }
+    {
+      owner = "awslabs";
+      repo = "git-secrets";
+      rev = "cc9f8185ba85bea28cf64326e10ae2c5be9cc080";
+      sha256 = "sha256-CsYapHFx10rJkXj3xjL4vlVNZh3T9emZQRdCFcmJa/Y=";
+      links = {
+        "git-secrets" = "${HOME}/bin/git-secrets";
       };
     }
     #{
@@ -93,15 +143,6 @@ let
     #    "ls-stat" = "${HOME}/bin/ls-stat";
     #  };
     #}
-    {
-      owner = "scottidler";
-      repo = "xpndr";
-      rev = "04ca06b448ee71ea5450324d2b5d5fdb99826e49";
-      sha256 = "sha256-MliR/r9AEq+0/uJcVvQbB1TQZ+/xxQnmm0b2LI7nmV8=";
-      links = {
-        "xpndr" = "${HOME}/bin/xpndr";
-      };
-    }
     #{
     #  owner = "scottidler";
     #  repo = "y2j";
@@ -112,29 +153,6 @@ let
     #    "bin/j2y" = "${HOME}/bin/j2y";
     #  };
     #}
-    {
-      owner = "scottidler";
-      repo = "repo";
-      rev = "69bcd3a5d43da3bcba33e6ef4cde629bbee115cd";
-      sha256 = "sha256-hTArEDz3ziaSwWeMarZWNhe2lVSwWzJNbqwW+XEld0k=";
-      links = {
-        "bin/repo" = "${HOME}/bin/repo";
-      };
-    }
-    {
-      owner = "scottidler";
-      repo = "cert-tools";
-      rev = "35cbad5b63f1c27d65b4febf6d1e9e40914f1bac";
-      sha256 = "sha256-nnckSkJQj6ObBD9xEgvQD9ms1BpUTXxJ+b1K/lBkWzU=";
-      links = {
-        "findcert" = "${HOME}/bin/findcert";
-        "modcert" = "${HOME}/bin/modcert";
-        "ssl-compare" = "${HOME}/bin/ssl-compare";
-        "ssl-inspect" = "${HOME}/bin/ssl-inspect";
-        "ssl-sans" = "${HOME}/bin/ssl-sans";
-        "ssl-validity" = "${HOME}/bin/ssl-validity";
-      };
-    }
     #{
     #  owner = "sahsanu";
     #  repo = "lectl";
@@ -153,15 +171,6 @@ let
     #    "git-big-picture" = "${HOME}/bin/gbp";
     #  };
     #}
-    {
-      owner = "awslabs";
-      repo = "awscli-aliases";
-      rev = "5357e18bc27b42a827b6780564ea873a72ca1f01";
-      sha256 = "sha256-E2tRNEQaboeCm+Od0BPSwm2hEiFzFtK+pFLEg7t0FUg=";
-      links = {
-        "alias" = "${HOME}/.awscli-aliases";
-      };
-    }
     #{
     #  owner = "powerline";
     #  repo = "powerline";
@@ -190,15 +199,6 @@ let
     #    "." = "${HOME}/.oh-my-zsh";
     #  };
     #}
-    {
-      owner = "awslabs";
-      repo = "git-secrets";
-      rev = "cc9f8185ba85bea28cf64326e10ae2c5be9cc080";
-      sha256 = "sha256-CsYapHFx10rJkXj3xjL4vlVNZh3T9emZQRdCFcmJa/Y=";
-      links = {
-        "git-secrets" = "${HOME}/bin/git-secrets";
-      };
-    }
     #{
     #  owner = "tfutils";
     #  repo = "tfenv";
