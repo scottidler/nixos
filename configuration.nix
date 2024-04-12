@@ -175,6 +175,7 @@
     graphviz
     kitty
     kitty-themes
+    openssl
     openvpn
     pciutils
     pavucontrol
