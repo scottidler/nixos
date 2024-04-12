@@ -39,6 +39,7 @@ in {
 
     unzip
     wget
+    curlWithGnuTls
     gnupg
     keychain
     vlc
@@ -65,16 +66,37 @@ in {
     ripgrep
     starship
     bat
-    zoxide
     fzf
 
     coreutils
     libreoffice
-    #zoom-us
     xclip
 
     wofi
     waybar
+
+    # unfree
+    #zoom-us
+    #slack
+    #spotify
+    #obsidian
+
+    libnotify
+    vlc
+
+    pre-commit
+    lazygit
+    nixpkgs-fmt
+    kubectl
+    jira-cli-go
+    magic-wormhole
+
+    nodePackages_latest.pyright
+    rust-analyzer
+    nodePackages.vim-language-server
+    lua-language-server
+
+
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -151,6 +173,10 @@ in {
           "kubectl"
         ];
       };
+    };
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
     };
     starship = {
       enable = true;
@@ -255,6 +281,11 @@ in {
   #
   #  /etc/profiles/per-user/saidler/etc/profile.d/hm-session-vars.sh
   #
+
+  home.sessionPath = [
+    "$HOME/bin"
+  ];
+
   home.sessionVariables = {
     EDITOR = "nvim";
     # FIXME: this is a stop gap until I can solve for binaries and scripts int a more idiomatic way
