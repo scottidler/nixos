@@ -6,12 +6,18 @@
 
 { config, pkgs, lib, ... }:
 
+#let
+#  pkgs = import nixpkgs {
+#    inherit system;
+#    config = { allowUnfree = true; }
+#  };
+#in 
 {
   # Allow unfree packages
   # Explicitly set which non-free packages can be installed
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
-    "vscode-extension-ms-vscode-cpptools"
+    #"vscode-extension-ms-vscode-cpptools"
     "nvidia"
     "nvidia-x11"
     "discord"
@@ -24,6 +30,14 @@
 
   # FIXME: need to figure out how to remove this and use only what's above ^^^
   nixpkgs.config.allowUnfree = true;
+
+  # Assert to ensure unfree packages are allowed
+  assertions = [
+    {
+      assertion = config.nixpkgs.config.allowUnfree == true;
+      message = "Unfree packages are not allowed but are required!";
+    }
+  ];
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"

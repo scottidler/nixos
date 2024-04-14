@@ -1,18 +1,20 @@
 # home.nix
 { config, pkgs, lib, ... }:
 let
-  repos = import ./repos.nix { inherit config lib pkgs; };
-  #nvim = pkgs.fetchFromGitHub {
-  #  owner = "scottidler";
-  #  repo = "nvim";
-  #  rev = "main";
-  #  sha256 = "sha256-Fg/g+CdnO7aIPCJcOBxEYUinwh2RjeWgf8xmyw3qvgo=";
-  #};
+  # repos = import ./repos.nix { inherit config lib pkgs; };
 in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "saidler";
   home.homeDirectory = "/home/saidler";
+
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
+
+  imports = [
+    (import ./modules)
+  ];
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -52,7 +54,7 @@ in {
     jq
     yq
     meld
-    neovim
+    #neovim
 
     eza
     tokei
@@ -245,7 +247,8 @@ in {
       # value used in fuzzy searching
       threshold=70
     '';
-  } // repos.home.file; # merge nvim configuration
+  };
+  #} // repos.home.file; # merge nvim configuration
 
   # Apply the activation scripts from repos
   # home.activation = repos.activation // {
