@@ -199,72 +199,72 @@ rec_ls = function()
 	});
 end
 
---ls.add_snippets("cpp", {
---	s("cp", {
---    t("// Copyright 2023 Open Ocean Robotics"), i(0)
---	}),
---
---	s("fn", {
---		i(1, "rtype"),
---    t(" "),
---		i(2, "foo"),
---		t("("),
---		i(3, "int bar"),
---    c(4, {
---      sn(nil, {
---        t(");"),
---        i(1),
---      }),
---		  sn(nil, { 
---        t({ ") {", "\t" }),
---        i(1),
---		    t({ "", "}" }),
---      }),
---    }),
---		i(0),
---	}),
---
---	s("inc", {
---		t("#include "),
---    c(1, {
---      sn(nil, {t("\""), i(1, "file.h"), t("\"")}),
---      sn(nil, {t("<"), i(1, "file.h"), t(">")}),
---    }),
---    i(0),
---	}),
---
---  s("cout", {
---    t("std::cout << "), i(1), d(2, rec_ls, {}), t(" << std::endl;"), i(0)
---  }),
---
---  s('once', {
---    t('#ifndef '),
---    dl(1, l.TM_FILENAME:upper():gsub('%.', '_'), {}),
---    t({'', '#define '}),
---    f(function(args) return args[1][1] end, {1}),
---    t({'', '', ''}),
---    i(0),
---    t({'', '', '#endif // '}),
---    f(function(args) return args[1][1] end, {1}),
---  }),
---
---  s("cla", {
---    t("class "), i(1, "ClassName"), t(" {"),
---    t({"", "public:"}),
---    t({"", "\t"}), f(copy, 1), t("();"),
---    t({"", "\tvirtual ~"}), f(copy, 1), t("() {}"),
---    t({"", ""}),
---    t({"", "private:"}),
---    t({"", "\t"}), f(copy, 1), t(" (const "), f(copy, 1), t("&) = delete;"),
---    t({"", "\t"}), f(copy, 1), t("& operator = (const "), f(copy, 1), t("&) = delete;"),
---    c(2, {
---      t(""),
---      d(3, delete_class, { 1 })
---    }),
---    t({"", "};"}),
---    i(0),
---  })
---})
+ls.add_snippets("cpp", {
+	s("cp", {
+    t("// Copyright 2023 Open Ocean Robotics"), i(0)
+	}),
+
+	s("fn", {
+		i(1, "rtype"),
+    t(" "),
+		i(2, "foo"),
+		t("("),
+		i(3, "int bar"),
+    c(4, {
+      sn(nil, {
+        t(");"),
+        i(1),
+      }),
+		  sn(nil, { 
+        t({ ") {", "\t" }),
+        i(1),
+		    t({ "", "}" }),
+      }),
+    }),
+		i(0),
+	}),
+
+	s("inc", {
+		t("#include "),
+    c(1, {
+      sn(nil, {t("\""), i(1, "file.h"), t("\"")}),
+      sn(nil, {t("<"), i(1, "file.h"), t(">")}),
+    }),
+    i(0),
+	}),
+
+  s("cout", {
+    t("std::cout << "), i(1), d(2, rec_ls, {}), t(" << std::endl;"), i(0)
+  }),
+
+  s('once', {
+    t('#ifndef '),
+    dl(1, l.TM_FILENAME:upper():gsub('%.', '_'), {}),
+    t({'', '#define '}),
+    f(function(args) return args[1][1] end, {1}),
+    t({'', '', ''}),
+    i(0),
+    t({'', '', '#endif // '}),
+    f(function(args) return args[1][1] end, {1}),
+  }),
+
+  s("cla", {
+    t("class "), i(1, "ClassName"), t(" {"),
+    t({"", "public:"}),
+    t({"", "\t"}), f(copy, 1), t("();"),
+    t({"", "\tvirtual ~"}), f(copy, 1), t("() {}"),
+    t({"", ""}),
+    t({"", "private:"}),
+    t({"", "\t"}), f(copy, 1), t(" (const "), f(copy, 1), t("&) = delete;"),
+    t({"", "\t"}), f(copy, 1), t("& operator = (const "), f(copy, 1), t("&) = delete;"),
+    c(2, {
+      t(""),
+      d(3, delete_class, { 1 })
+    }),
+    t({"", "};"}),
+    i(0),
+  })
+})
 
 -- set type to "autosnippets" for adding autotriggered snippets.
 ls.add_snippets("all", {

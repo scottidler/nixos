@@ -14,10 +14,10 @@
       };
     };
 in {
-#  home.packages = with pkgs; [
-#    vscode-extensions.ms-vscode.cpptools
-#    vscode-extensions.vadimcn.vscode-lldb
-#  ];
+  home.packages = with pkgs; [
+    vscode-extensions.ms-vscode.cpptools
+    vscode-extensions.vadimcn.vscode-lldb
+  ];
   programs = {
     neovim = {
       plugins = [
