@@ -17,15 +17,6 @@ let
       };
     }
     {
-      owner = "scottidler";
-      repo = "dock";
-      rev = "2236b0882c67a7336fcf04c2ef51b20f260e8f23";
-      sha256 = "sha256-BwHxyL7MLlnAhP3eYH/QFfq7ovTSH3c5h7FbA9Aui7M=";
-      links = {
-        "dock" = "${HOME}/bin/dock";
-      };
-    }
-    {
       owner = "awslabs";
       repo = "awscli-aliases";
       rev = "5357e18bc27b42a827b6780564ea873a72ca1f01";

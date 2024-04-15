@@ -230,6 +230,7 @@ in {
       ];
 
       extraLuaConfig = ''
+        ${builtins.readFile config/autocmds.lua}
         ${builtins.readFile config/mappings.lua}
         ${builtins.readFile config/options.lua}
       '';
