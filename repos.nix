@@ -18,15 +18,6 @@ let
     }
     {
       owner = "scottidler";
-      repo = "repo";
-      rev = "69bcd3a5d43da3bcba33e6ef4cde629bbee115cd";
-      sha256 = "sha256-hTArEDz3ziaSwWeMarZWNhe2lVSwWzJNbqwW+XEld0k=";
-      links = {
-        "bin/repo" = "${HOME}/bin/repo";
-      };
-    }
-    {
-      owner = "scottidler";
       repo = "dock";
       rev = "520a4c4723a6d161cc1b328248ec66c62f161aaf";
       sha256 = "sha256-Bt8mlKMlWFTc8qOOpwOO12QvHQk3rl9Huj+XZMb8mZ0=";

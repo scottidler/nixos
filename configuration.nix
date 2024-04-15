@@ -199,6 +199,7 @@
     #python311Packages.pip
     read-edid
     rustup
+    scowl
     slack
     spotify
     tldr
@@ -213,6 +214,11 @@
     xorg.libxcvt
 
   ];
+
+  environment.etc."words" = {
+    source = "${pkgs.scowl}/share/dict/wamerican.txt";
+    mode = "0444";
+  };
 
   fonts.packages = with pkgs; [
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "SourceCodePro" ]; })
