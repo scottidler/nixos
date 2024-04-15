@@ -19,19 +19,10 @@ let
     {
       owner = "scottidler";
       repo = "dock";
-      rev = "520a4c4723a6d161cc1b328248ec66c62f161aaf";
-      sha256 = "sha256-Bt8mlKMlWFTc8qOOpwOO12QvHQk3rl9Huj+XZMb8mZ0=";
+      rev = "2236b0882c67a7336fcf04c2ef51b20f260e8f23";
+      sha256 = "sha256-BwHxyL7MLlnAhP3eYH/QFfq7ovTSH3c5h7FbA9Aui7M=";
       links = {
         "dock" = "${HOME}/bin/dock";
-      };
-    }
-    {
-      owner = "scottidler";
-      repo = "xpndr";
-      rev = "04ca06b448ee71ea5450324d2b5d5fdb99826e49";
-      sha256 = "sha256-MliR/r9AEq+0/uJcVvQbB1TQZ+/xxQnmm0b2LI7nmV8=";
-      links = {
-        "xpndr" = "${HOME}/bin/xpndr";
       };
     }
     {
