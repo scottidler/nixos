@@ -3,9 +3,11 @@
 {...}:
 {
   imports = [
-    (import ./scottidler/git)
-    (import ./scottidler/tmp)
-    (import ./scottidler/repo)
+    (import ./scottidler/cert-tools)
     (import ./scottidler/dock)
+    (import ./scottidler/git)
+    (import ./scottidler/helpful)
+    (import ./scottidler/repo)
+    (import ./scottidler/tmp)
   ];    
 }
