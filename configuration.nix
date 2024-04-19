@@ -1,17 +1,7 @@
 # configuration.nix
 
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, lib, ... }:
 
-#let
-#  pkgs = import nixpkgs {
-#    inherit system;
-#    config = { allowUnfree = true; }
-#  };
-#in 
 {
   # Allow unfree packages
   # Explicitly set which non-free packages can be installed
