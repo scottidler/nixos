@@ -113,7 +113,7 @@
 
     # other packages
     (callPackage /home/saidler/repos/scottidler/aka/default.nix {})
-    (callPackage /home/saidler/repos/scottidler/rmrf/default.nix {})
+    (callPackage /home/saidler/repos/scottidler/rmrf/default.nix {}) # FIXME: can't replace yet
   ];
 
   programs = {
