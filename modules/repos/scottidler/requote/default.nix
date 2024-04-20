@@ -3,17 +3,16 @@
 { stdenv, fetchurl, autoPatchelfHook, gcc, glibc, lib, libgcc, ... }:
 
 let
-  version = "0.1.10";
+  version = "0.1.4";
   owner = "scottidler";
   repo = "requote";
-  pname = "requote";
   suffix = "linux";
   tarball = fetchurl {
     url = "https://github.com/${owner}/${repo}/releases/download/v${version}/requote-v${version}-${suffix}.tar.gz";
-    sha256 = "11cm77rin3yia6axgixgrlp7pnpd9q98n6b22gam1328x1d9mkjq";
+    sha256 = "0495c72na8njy8gx6y43nzsv16532k7hfaf3r9g46ycjd7rkic2h";
   };
 in stdenv.mkDerivation {
-  inherit repo pname version;
+  inherit owner repo version tarball; #FIXME: I added a bunch of inherits but doubt I need them.
 
   src = tarball;
 
