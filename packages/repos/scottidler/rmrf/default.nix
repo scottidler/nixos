@@ -1,18 +1,19 @@
-# modules/repos/scottidler/requote/default.nix
+# default.nix
 
 { stdenv, fetchurl, autoPatchelfHook, gcc, glibc, lib, libgcc, ... }:
 
 let
-  version = "0.1.4";
+  version = "0.1.10";
   owner = "scottidler";
-  repo = "requote";
+  repo = "rmrf";
   suffix = "linux";
   tarball = fetchurl {
-    url = "https://github.com/${owner}/${repo}/releases/download/v${version}/requote-v${version}-${suffix}.tar.gz";
-    sha256 = "0495c72na8njy8gx6y43nzsv16532k7hfaf3r9g46ycjd7rkic2h";
+    url = "https://github.com/${owner}/${repo}/releases/download/v${version}/rmrf-v${version}-${suffix}.tar.gz";
+    sha256 = "11cm77rin3yia6axgixgrlp7pnpd9q98n6b22gam1328x1d9mkjq";
   };
-in stdenv.mkDerivation {
-  inherit owner repo version tarball; #FIXME: I added a bunch of inherits but doubt I need them.
+in stdenv.mkDerivation rec {
+  pname = "rmrf";
+  inherit version;
 
   src = tarball;
 
@@ -27,7 +28,7 @@ in stdenv.mkDerivation {
   '';
 
   meta = with lib; {
-    description = "tool for requoting double->single or single->double";
+    description = "tool for staging rmrf-ing or bkup-ing files";
     homepage = "https://github.com/${owner}/${repo}";
     license = licenses.mit;
     platforms = platforms.linux ++ platforms.darwin;

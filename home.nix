@@ -26,6 +26,10 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    # other packages
+    (callPackage ./packages/repos/scottidler/aka {})
+    (callPackage ./packages/repos/scottidler/requote {})
+    (callPackage ./packages/repos/scottidler/rmrf {})
     # FIXME: would be nice to have the fetch commands installed
     # nix-prefetch-scripts
     # gitAndTools.nix-prefetch-git
@@ -111,9 +115,6 @@
       echo "Hello, ${config.home.username}!"
     '')
 
-    # other packages
-    (callPackage /home/saidler/repos/scottidler/aka/default.nix {})
-    (callPackage /home/saidler/repos/scottidler/rmrf/default.nix {}) # FIXME: can't replace yet
   ];
 
   programs = {

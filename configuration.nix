@@ -29,12 +29,6 @@
     }
   ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   imports =
     [ # Include the results of the hardware scan.
       # ./hardware-configuration.nix
@@ -47,6 +41,12 @@
       saidler = import /home/saidler/.config/home-manager/home.nix;
     };
   };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nix.settings.experimental-features = [
     "nix-command"
