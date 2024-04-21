@@ -3,11 +3,11 @@
 { pkgs, ...}:
 {
   imports = [
-    (import ./scottidler/cert-tools)
-    (import ./scottidler/dock)
-    (import ./scottidler/git)
-    (import ./scottidler/helpful)
-    (import ./scottidler/repo)
-    (import ./scottidler/tmp)
+    ./scottidler/cert-tools
+    ./scottidler/dock
+    ./scottidler/git
+    ./scottidler/helpful
+    ./scottidler/repo
+    ./scottidler/tmp
   ];    
 }

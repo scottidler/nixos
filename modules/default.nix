@@ -3,8 +3,8 @@
 {...}:
 {
   imports = [
-    (import ./neovim)
-    (import ./firefox)
-    (import ./repos)
+    ./neovim
+    ./firefox
+    ./repos
   ];    
 }
