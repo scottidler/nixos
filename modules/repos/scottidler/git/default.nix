@@ -1,3 +1,5 @@
+# modules/repos/scottidler/git/default.nix
+
 { config, pkgs, lib, ... }:
 
 let
