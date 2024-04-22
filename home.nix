@@ -149,7 +149,16 @@
       enableAutosuggestions = true; # autosuggestion.enable = true; was told to use this, but it didnt work
       history.share = true;
       syntaxHighlighting.enable = true;
-      initExtra = ''source ${pkgs.callPackage /home/saidler/repos/scottidler/aka/default.nix {} }/share/zsh/site-functions/_aka'';
+      initExtra = ''
+        source ${pkgs.callPackage /home/saidler/repos/scottidler/aka/default.nix {} }/share/zsh/site-functions/_aka
+        if [[ -d ${config.home.homeDirectory}/.shell-functions.d ]]; then
+          for script in ${config.home.homeDirectory}/.shell-functions.d/*.sh; do
+            if [[ -r $script ]]; then
+              . $script
+            fi
+          done
+        fi
+      '';
       plugins = [
         {
           name = "zsh-nix-shell";
