@@ -1,6 +1,10 @@
 # home.nix
 { config, pkgs, lib, ... }:
-{
+let
+  # Ensure poetry2nix is available if not part of your pkgs by default
+  # For instance, you might need to add it to your environment's overlays or directly import it
+  #poetry2nix = import "github:nix-community/poetry2nix" { inherit (pkgs) fetchurl fetchgit stdenv lib python3 pkgs; };
+in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "saidler";
@@ -28,6 +32,12 @@
   home.packages = with pkgs; [
     # other packages
     (callPackage ./packages/repos/scottidler/aka {})
+#    (callPackage ./packages/repos/scottidler/git {
+#      inherit (python3Packages) buildPythonPackage;
+#      inherit (pkgs) fetchFromGitHub python3Packages;
+#    })
+    (callPackage ./packages/repos/scottidler/git {
+    })
     (callPackage ./packages/repos/scottidler/requote {})
     (callPackage ./packages/repos/scottidler/rmrf {})
     # FIXME: would be nice to have the fetch commands installed
