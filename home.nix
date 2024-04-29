@@ -32,12 +32,7 @@ in {
   home.packages = with pkgs; [
     # other packages
     (callPackage ./packages/repos/scottidler/aka {})
-#    (callPackage ./packages/repos/scottidler/git {
-#      inherit (python3Packages) buildPythonPackage;
-#      inherit (pkgs) fetchFromGitHub python3Packages;
-#    })
-    (callPackage ./packages/repos/scottidler/git {
-    })
+    (callPackage ./packages/repos/scottidler/git-tools {})
     (callPackage ./packages/repos/scottidler/requote {})
     (callPackage ./packages/repos/scottidler/rmrf {})
     # FIXME: would be nice to have the fetch commands installed
