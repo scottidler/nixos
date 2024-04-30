@@ -2,13 +2,13 @@
 { stdenv, fetchurl, autoPatchelfHook, openssl, zlib, lib }:
 
 let
-  version = "0.1.5";
+  version = "0.1.6";
   owner = "scottidler";
   repo = "git-tools";
   suffix = "linux";
   tarball = fetchurl {
     url = "https://github.com/${owner}/${repo}/releases/download/v${version}/${repo}-v${version}-${suffix}.tar.gz";
-    sha256 = "0plr47wys2l5zsl4gv815iq4a59f47hjqs2l10vm10zx31nbxqii";
+    sha256 = "1d7xa2jxkfpvlqh5pk40byysm0isqylindnirjlbyh8i9y07x5a4";
   };
 in stdenv.mkDerivation rec {
   pname = repo;
