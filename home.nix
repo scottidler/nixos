@@ -155,7 +155,8 @@ in {
       history.share = true;
       syntaxHighlighting.enable = true;
       initExtra = ''
-        source ${pkgs.callPackage /home/saidler/repos/scottidler/aka/default.nix {} }/share/zsh/site-functions/_aka
+        source ${pkgs.callPackage ./packages/repos/scottidler/git-tools {}}/share/shell-functions.sh
+        source ${pkgs.callPackage ./packages/repos/scottidler/aka {} }/share/zsh/site-functions/_aka
         if [[ -d ${config.home.homeDirectory}/.shell-functions.d ]]; then
           for script in ${config.home.homeDirectory}/.shell-functions.d/*.sh; do
             if [[ -r $script ]]; then
