@@ -3,13 +3,13 @@
 { stdenv, fetchurl, autoPatchelfHook, gcc, glibc, lib, libgcc, ... }:
 
 let
-  version = "0.3.15";
+  version = "0.4.2";
   owner = "scottidler";
   repo = "aka";
   suffix = "linux";
   tarball = fetchurl {
     url = "https://github.com/${owner}/${repo}/releases/download/v${version}/aka-v${version}-${suffix}.tar.gz";
-    sha256 = "082wk31b2ybs63rxib7ym54jly4ywwiyiz7shnxda18hl0ijsrxd";
+    sha256 = "05l5h2k2b6y9vaqfcwh3lhaj9pcmgl62286mh9cbhd415qd0n1jx";
   };
 in stdenv.mkDerivation rec {
   pname = "aka";
