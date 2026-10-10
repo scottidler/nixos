@@ -8,7 +8,7 @@ let
     rev = "03850b057066f525a827405ec6316a528b25ae91";
     sha256 = "sha256-2sEJEVvUaZsb1InvUQ6DONYgG68WFm2eraqfWBRhWsM=";
   };
-  
+
   # Create a Python environment that includes ruamel.yaml
   pythonDeps = pkgs.python3.withPackages (ps: with ps; [ ruamel_yaml ]);
 

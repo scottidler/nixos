@@ -8,5 +8,5 @@
     ./scottidler/helpful
     ./scottidler/repo
     ./scottidler/tmp
-  ];    
+  ];
 }

@@ -184,7 +184,7 @@ end
 local delete_class = function(class_name)
   return sn(nil, {
           t({"", "\t"}), t(class_name), t("(const "), t(class_name), t("&) = delete;"),
-          t({"", "\t"}), t(class_name), t("& operator=(const "), t(class_name), t("&) = delete;"), 
+          t({"", "\t"}), t(class_name), t("& operator=(const "), t(class_name), t("&) = delete;"),
          })
 end
 
@@ -215,7 +215,7 @@ ls.add_snippets("cpp", {
         t(");"),
         i(1),
       }),
-		  sn(nil, { 
+		  sn(nil, {
         t({ ") {", "\t" }),
         i(1),
 		    t({ "", "}" }),

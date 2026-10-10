@@ -144,7 +144,7 @@ in {
       bashrcExtra = ''
         # Define your PS1 here
         PS1='\\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\$ '
-        
+
         # Any other bashrc configurations can go here
       '';
     };
@@ -307,7 +307,7 @@ in {
     EDITOR = "nvim";
     # FIXME: this is a stop gap until I can solve for binaries and scripts int a more idiomatic way
     # PATH = "${config.home.homeDirectory}/bin:$PATH";
-    # PATH = "${config.environment.systemPackages}/bin:${pkgs.git}/bin:/run/current-system/sw/bin:$PATH"; 
+    # PATH = "${config.environment.systemPackages}/bin:${pkgs.git}/bin:/run/current-system/sw/bin:$PATH";
     # PATH = lib.makeBinPath [ pkgs.git ] + ":/run/current-system/sw/bin:$PATH"; THIS FUCKED ME
     # PATH = "&PATH:${pkgs.nix-prefetch-scripts}/bin:${pkgs.gitAndTools.nix-prefetch-git}/bin";
   };

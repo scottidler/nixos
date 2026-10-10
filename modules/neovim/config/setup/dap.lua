@@ -1,7 +1,7 @@
 function dirLookup(dir)
    -- Return first result from find
-   local p = io.popen('find '..dir..' -maxdepth 0 -type d | head -n 1')  
-   for file in p:lines() do 
+   local p = io.popen('find '..dir..' -maxdepth 0 -type d | head -n 1')
+   for file in p:lines() do
        return file
    end
 end
